@@ -1,0 +1,104 @@
+﻿@model KimeBlog.Models.BlogPost
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="row title-header">
+
+
+    <div class="col-lg-1 hidden-xs">
+        <div class="row">
+            @if (Model.CanNext)
+            {
+                <div class="pull-left">
+                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.NextId">
+                        <span class="glyphicon glyphicon-chevron-left"></span>Newer
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="col-lg-10">
+        <h1 class="text-center">@Model.Title.ToUpper()</h1>
+       
+        <div class="row text-center" id="post-details">    
+            <div class="text-center" style=" vertical-align: top;"><small>@Model.PubDate</small></div>   
+            <div class="fb-share-button" data-href="http://blog.kimerran.com/b/@Model.Id/@Model.Url" data-type="button_count"></div>
+            <span ><a style="padding:0;" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></span>
+         
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    </div>
+    <div class="visible-xs">
+        @if (Model.CanNext)
+        {
+            <div class="pull-left">
+                <a class="visible-xs" role="button" href="/b/@Model.NextId">
+                    <span class="glyphicon glyphicon-chevron-left"></span>Newer
+                </a>
+            </div>
+        }
+    </div>
+
+    <div class="pull-right col-lg-1">
+        <div class="row">
+            @if (Model.CanPrev)
+            {
+                <div class="pull-right">
+                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.PrevId">
+                        Older<span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                    <a class="visible-xs" role="button" href="/b/@Model.PrevId">
+                        Older<span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+
+            }
+        </div>
+    </div>
+
+
+</div>
+
+
+<hr />
+@*
+    -- handlers not yet done, so don't show yet
+    @foreach (var item in Model.Tags)
+    {
+        <span><a href="/tags/@item">#@item</a></span>
+    }
+*@
+<div class="row">
+    <div class="col-md-12">
+        @Html.Raw(Model.ContentHtml)
+    </div>
+</div>
+<hr />
+<div class="row">
+    @if (Model.CanNext)
+    {
+        <div class="pull-left">
+            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.NextId">
+                <span class="glyphicon glyphicon-chevron-left"></span>Newer
+            </a>
+            <a class="visible-xs" role="button" href="/b/@Model.NextId">
+                <span class="glyphicon glyphicon-chevron-left"></span>Newer
+            </a>
+        </div>
+
+    }
+    @if (Model.CanPrev)
+    {
+        <div class="pull-right">
+            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.PrevId">
+                Older<span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+            <a class="visible-xs" role="button" href="/b/@Model.PrevId">
+                Older<span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+
+    }
+</div>

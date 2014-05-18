@@ -1,0 +1,27 @@
+﻿@model List<KimeBlog.Models.BlogPost>
+@{
+    ViewBag.Title = ":)";
+}
+<div class="row">
+    <div class="col-md-12">
+        <ul style="list-style:none;padding:0px;">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <div class="alert alert-success">
+                        <h3 style="margin:2px 0 2px 0;"><a href="/b/@item.Id">@item.Title</a></h3>
+                        <span>@item.PubDate</span>
+                        <p>
+                            @item.Preview <small>...</small>
+                        </p>
+                    </div>
+                </li>
+
+
+            }
+        </ul>
+
+    </div>
+
+</div>
+

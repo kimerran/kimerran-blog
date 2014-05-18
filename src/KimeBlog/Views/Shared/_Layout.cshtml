@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - the kimerran logs</title>
+
+    <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script data-pace-options='{ "ajax": false }' src="~/Static/js/pace.js"></script>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <style>
+        @@font-face {
+            src: url('/fonts/Walkway_SemiBold.ttf');
+            font-family: 'Walkway_SemiBold';
+        }
+    </style>
+
+    <link rel="stylesheet" href="~/Static/css/pace.css" />
+    <link rel="stylesheet" href="~/Static/css/style.css" />
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=405374146213795&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("the kimerran logs (alpha)", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <form class="navbar-form collapse navbar-collapse navbar-right" action="/b/search">
+                <input type="text" name="q" class="form-control col-xs-4" placeholder="Search">
+            </form>
+
+        </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - <a href="http://blog.kimerran.com">the kimerran logs</a></p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>hljs.initHighlightingOnLoad(); Pace.stop();</script>
+
+    <script>
+        $(".fb_share").click(function () {
+            alert('clicked!');
+        });
+    </script>
+</body>
+</html>
