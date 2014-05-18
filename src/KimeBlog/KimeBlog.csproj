@@ -102,7 +102,6 @@
     <Content Include="Static\js\pace.js" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Static\posts\124.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BlogConfig.cs" />
@@ -119,7 +118,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Static\posts\123.md" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Blog\Read.cshtml" />
@@ -128,7 +126,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Static\posts\all.json" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Static\posts\125.md" />
     <Content Include="Views\Blog\Search.cshtml" />
     <Content Include="Static\posts\101.md" />
     <None Include="Web.Debug.config">

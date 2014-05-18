@@ -24,5 +24,7 @@ namespace KimeBlog.Models
 
         public int NextId { get; set; }
         public int PrevId { get; set; }
+
+        public string ThumbUrl { get; set; }
     }
 }
