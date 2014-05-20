@@ -1,7 +1,7 @@
 kimerran-blog
 =============
 
-Source code of my blog found at [blog.kimerran.com] (blog.kimerran.com)
+Source code of my blog found at [blog.kimerran.com] (http://blog.kimerran.com)
 
 
 technology set
