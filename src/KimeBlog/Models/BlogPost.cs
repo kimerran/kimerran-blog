@@ -28,6 +28,8 @@ namespace KimeBlog.Models
         public string Author { get; set; }
         public string PubDate { get; set; }
         public string ContentHtml { get; set; }
+
+        public string Content { get; set; }
         public string Preview { get; set; }
 
         public string FacebookUsername { get; set; }

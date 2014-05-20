@@ -4,6 +4,7 @@ using MarkdownSharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -79,7 +80,12 @@ namespace KimeBlog.Controllers
             post.FacebookUsername = BlogConfig.FB_USERNAME;
             post.TwitterUsername = BlogConfig.TW_USERNAME;
 
-            string contentHtml =  (new Markdown()).Transform(match.Groups[2].ToString());
+            string mdFileContent = match.Groups[2].ToString();
+
+            //TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+            //post.Content = textInfo.ToTitleCase(mdFileContent);
+
+            string contentHtml = (new Markdown()).Transform(mdFileContent);
 
             // dirty conversion of <img> to responsive
             contentHtml = contentHtml.Replace(@"<img", @"<img class='img img-responsive ' ");
