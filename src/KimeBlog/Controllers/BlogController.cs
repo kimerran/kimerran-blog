@@ -30,7 +30,7 @@ namespace KimeBlog.Controllers
             
             foreach (var post in posts)
             {
-                postsContent.Add(GeneratePost(post.Id.ToString(), ""));
+                postsContent.Add(KimeBlogApp.GeneratePost(post.Id.ToString(), ""));
             }
 
             // check for any matches
@@ -48,11 +48,11 @@ namespace KimeBlog.Controllers
         }
 
         [Route("{id}/{url}")]
-        [OutputCache(Duration=20)]
+        //[OutputCache(Duration=20)]
         [HttpGet]
         public ActionResult Read(string id, string url)
         {
-            BlogPost post = GeneratePost(id, url);
+            BlogPost post = KimeBlogApp.GeneratePost(id, url);
 
             if (url != post.Url || url == "")  // if wrong url, redirect to SEO-friendly version
             {
@@ -62,54 +62,7 @@ namespace KimeBlog.Controllers
             return View(post);
         }
 
-
-
-        private BlogPost GeneratePost(string id, string url = "")
-        {
-            
-            Match match = Regex.Match(System.IO.File.ReadAllText(
-                            BlogConfig.PATH_POSTS + String.Format(@"{0}.md", id)),
-                            @"%(\{[^\}]+\})%([^*]+)",
-                            RegexOptions.IgnoreCase);
-
-            BlogPost post = JsonConvert.DeserializeObject<BlogPost>(match.Groups[1].ToString());
-            
-         
-            
-
-            post.FacebookUsername = BlogConfig.FB_USERNAME;
-            post.TwitterUsername = BlogConfig.TW_USERNAME;
-
-            string mdFileContent = match.Groups[2].ToString();
-
-            //TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-            //post.Content = textInfo.ToTitleCase(mdFileContent);
-
-            string contentHtml = (new Markdown()).Transform(mdFileContent);
-
-            // dirty conversion of <img> to responsive
-            contentHtml = contentHtml.Replace(@"<img", @"<img class='img img-responsive ' ");
-            post.ContentHtml = contentHtml;
-            post.CanNext = false;
-            post.CanPrev = false;
-
-            int Id;
-            Int32.TryParse(id, out Id);
- 
-            // check if there's prev and next
-            if (System.IO.File.Exists(BlogConfig.PATH_POSTS + String.Format(@"{0}.md", Id - 1)))
-            {
-                post.CanPrev = true;
-                post.PrevId = Id - 1;
-            }
-            if (System.IO.File.Exists(BlogConfig.PATH_POSTS + String.Format(@"{0}.md", Id + 1)))
-            {
-                post.CanNext = true;
-                post.NextId = Id + 1;
-            }
-          
-            return post;
-
-        }
+     
+       
     }
 }

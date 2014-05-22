@@ -1,16 +1,17 @@
 ﻿
-        body {
-            font-family: 'Walkway_SemiBold';
-        }
+body {
+    font-family: 'Walkway_SemiBold';
+}
 
-        h, p {
-            font-size: 24px;
-        }
+h, p, ul, li {
+    font-size: 24px;
+}
 
-        p {
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
-        .fb-share-button {
-   vertical-align: top;    
+p {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.fb-share-button {
+    vertical-align: top;
 }
