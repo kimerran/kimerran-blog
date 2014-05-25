@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
+﻿<!--
+KimeBlog by kimerran (http://blog.kimerran.com)
+Source available at https://github.com/kimerran/kimerran-blog
+-->
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @RenderSection("MetaTags" , false)
     <title>@ViewBag.Title - the kimerran logs</title>
-
     <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script data-pace-options='{ "ajax": false }' src="~/Static/js/pace.js"></script>
-
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="http://bootswatch.com/flatly/bootstrap.min.css" />
@@ -19,21 +22,20 @@
             font-family: 'Walkway_SemiBold';
         }
     </style>
-
     <link rel="stylesheet" href="~/Static/css/pace.css" />
     <link rel="stylesheet" href="~/Static/css/style.css" />
 </head>
 <body>
     <div id="fb-root"></div>
     <script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=405374146213795&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=405374146213795&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -43,13 +45,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("the kimerran logs (alpha)", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("the kimerran logs", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-
             <form class="navbar-form collapse navbar-collapse navbar-right" action="/b/search">
                 <input type="text" name="q" class="form-control col-xs-4" placeholder="Search">
             </form>
-
         </div>
     </div>
     <div style="height:20px;"></div>
@@ -57,20 +57,24 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - <a href="http://blog.kimerran.com">the kimerran logs</a> | 
+            <p>
+                &copy; @DateTime.Now.Year - <a href="http://blog.kimerran.com">the kimerran logs</a> |
                 <a href="/projects">projects</a>
             </p>
         </footer>
     </div>
-
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script>hljs.initHighlightingOnLoad(); Pace.stop();</script>
 
-    <script>
-        $(".fb_share").click(function () {
-            alert('clicked!');
-        });
-    </script>
+<!--analytics-->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-51328902-1', 'kimerran.com');
+ga('send', 'pageview');
+</script>
 </body>
 </html>

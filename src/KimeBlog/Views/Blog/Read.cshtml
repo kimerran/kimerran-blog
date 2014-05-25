@@ -1,16 +1,19 @@
-﻿@model KimeBlog.Models.BlogPost
+﻿@model KimeBlog.ViewModels.BlogpostViewModel
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Post.Title;
+}
+@section MetaTags{@if (Model.MetaList.Count > 0){foreach (var item in Model.MetaList){
+<meta name="@item.Key" content="@item.Value" />}}
 }
 <div class="row title-header">
 
 
     <div class="col-lg-1 hidden-xs">
         <div class="row">
-            @if (Model.CanNext)
+            @if (Model.Post.CanNext)
             {
                 <div class="pull-left">
-                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.NextId">
+                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.Post.NextId">
                         <span class="glyphicon glyphicon-chevron-left"></span>Newer
                     </a>
                 </div>
@@ -20,21 +23,21 @@
     </div>
 
     <div class="col-lg-10">
-        <h1 class="text-center" style="margin-left:10px;margin-right:10px;">@Model.Title.ToUpper()</h1>
+        <h1 class="text-center" style="margin-left:10px;margin-right:10px;">@Model.Post.Title.ToUpper()</h1>
        
         <div class="row text-center" id="post-details">    
-            <div class="text-center" style=" vertical-align: top;"><small>@Model.PubDate</small></div>   
-            <div class="fb-share-button" data-href="http://blog.kimerran.com/b/@Model.Id/@Model.Url" data-type="button_count"></div>
+            <div class="text-center" style=" vertical-align: top;"><small>@Model.Post.PubDate</small></div>   
+            <div class="fb-share-button" data-href="http://blog.kimerran.com/b/@Model.Post.Id/@Model.Post.Url" data-type="button_count"></div>
             <span ><a style="padding:0;" href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></span>
          
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
     </div>
     <div class="visible-xs">
-        @if (Model.CanNext)
+        @if (Model.Post.CanNext)
         {
             <div class="pull-left">
-                <a class="visible-xs" role="button" href="/b/@Model.NextId">
+                <a class="visible-xs" role="button" href="/b/@Model.Post.NextId">
                     <span class="glyphicon glyphicon-chevron-left"></span>Newer
                 </a>
             </div>
@@ -43,13 +46,13 @@
 
     <div class="pull-right col-lg-1">
         <div class="row">
-            @if (Model.CanPrev)
+            @if (Model.Post.CanPrev)
             {
                 <div class="pull-right">
-                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.PrevId">
+                    <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.Post.PrevId">
                         Older<span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
-                    <a class="visible-xs" role="button" href="/b/@Model.PrevId">
+                    <a class="visible-xs" role="button" href="/b/@Model.Post.PrevId">
                         Older<span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
                 </div>
@@ -72,33 +75,45 @@
 *@
 <div class="row">
     <div class="col-md-12">
-        @Html.Raw(Model.ContentHtml)
+        @Html.Raw(Model.Post.ContentHtml)
     </div>
 </div>
 <hr />
 <div class="row">
-    @if (Model.CanNext)
+    @if (Model.Post.CanNext)
     {
         <div class="pull-left">
-            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.NextId">
+            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.Post.NextId">
                 <span class="glyphicon glyphicon-chevron-left"></span>Newer
             </a>
-            <a class="visible-xs" role="button" href="/b/@Model.NextId">
+            <a class="visible-xs" role="button" href="/b/@Model..NextId">
                 <span class="glyphicon glyphicon-chevron-left"></span>Newer
             </a>
         </div>
 
     }
-    @if (Model.CanPrev)
+    @if (Model.Post.CanPrev)
     {
         <div class="pull-right">
-            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.PrevId">
+            <a class="btn btn-default btn-lg hidden-xs" role="button" href="/b/@Model.Post.PrevId">
                 Older<span class="glyphicon glyphicon-chevron-right"></span>
             </a>
-            <a class="visible-xs" role="button" href="/b/@Model.PrevId">
+            <a class="visible-xs" role="button" href="/b/@Model.Post.PrevId">
                 Older<span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
 
     }
 </div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'kimeblog';
+    (function () {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>

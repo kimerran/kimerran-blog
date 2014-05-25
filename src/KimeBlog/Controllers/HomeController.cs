@@ -20,7 +20,9 @@ namespace KimeBlog.Controllers
 
             List<BlogPost> posts = JsonConvert.DeserializeObject<List<BlogPost>>(alljson);
 
-            return View(posts);
+            posts.RemoveAll(o => o.Tags.Contains("archive"));
+
+            return View(posts.Take(12).ToList());
         }
     }
 }

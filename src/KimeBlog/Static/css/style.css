@@ -15,3 +15,7 @@ p {
 .fb-share-button {
     vertical-align: top;
 }
+
+.tags span {
+    margin:3px;
+}

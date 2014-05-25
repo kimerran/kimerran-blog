@@ -1,5 +1,6 @@
 ﻿using KimeBlog.App_Start;
 using KimeBlog.Models;
+using KimeBlog.ViewModels;
 using MarkdownSharp;
 using Newtonsoft.Json;
 using System;
@@ -52,14 +53,39 @@ namespace KimeBlog.Controllers
         [HttpGet]
         public ActionResult Read(string id, string url)
         {
-            BlogPost post = KimeBlogApp.GeneratePost(id, url);
-
+            BlogPost post;
+            try
+            {
+                post = KimeBlogApp.GeneratePost(id, url);
+            }
+            catch (Exception)
+            {
+                return new RedirectResult("/404");
+            }
+            
             if (url != post.Url || url == "")  // if wrong url, redirect to SEO-friendly version
             {
                 return new RedirectResult(String.Format("/b/{0}/{1}", post.Id, post.Url));
             }
 
-            return View(post);
+
+
+
+            var blogpost = new BlogpostViewModel {
+               Post = post
+            };
+
+            if (!string.IsNullOrEmpty(post.Preview))
+            {
+                blogpost.MetaList.Add("description", post.Preview);
+            }
+           
+            
+            if (post.Tags.Contains("archive"))
+            {
+                blogpost.MetaList.Add("robots", "noindex");   
+            }
+            return View(blogpost);
         }
 
      

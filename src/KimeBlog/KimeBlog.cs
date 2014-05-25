@@ -54,6 +54,7 @@ namespace KimeBlog
 
         public static BlogPost GeneratePost(string id, string url = "")
         {
+
             BlogPost post = KimeBlogApp._ExtractContent(id);
            
             post.CanNext = false;

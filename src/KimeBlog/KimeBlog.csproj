@@ -116,6 +116,7 @@
     <Compile Include="Models\BlogPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThirdParty\MarkdownSharp.cs" />
+    <Compile Include="ViewModels\BlogpostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -126,11 +127,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Static\posts\all.json" />
+    <None Include="Static\posts\all.json" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\Search.cshtml" />
     <Content Include="Static\posts\101.md" />
-    <Content Include="Static\posts\projects.md" />
+    <None Include="Static\posts\projects.md" />
     <Content Include="Views\StaticPage\Index.cshtml" />
     <Content Include="Views\StaticPage\NotFound.cshtml" />
     <None Include="Web.Debug.config">
