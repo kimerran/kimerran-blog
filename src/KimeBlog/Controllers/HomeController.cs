@@ -18,11 +18,12 @@ namespace KimeBlog.Controllers
             // read all.json
             string alljson = System.IO.File.ReadAllText(BlogConfig.PATH_POSTS + "all.json");
 
-            List<BlogPost> posts = JsonConvert.DeserializeObject<List<BlogPost>>(alljson);
+            List<BlogPost> posts = (JsonConvert.DeserializeObject<List<BlogPost>>(alljson));
 
             posts.RemoveAll(o => o.Tags.Contains("archive"));
+           
 
-            return View(posts.Take(12).ToList());
+            return View(posts.OrderByDescending(o => o.Id).Take(12).ToList());
         }
     }
 }
